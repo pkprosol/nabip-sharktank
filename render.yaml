@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: nabip-sharktank
+    runtime: static
+    buildCommand: bash build.sh
+    envVars:
+      - key: SPOTS_REMAINING
+        value: "5"
+    staticPublishPath: ./public
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
