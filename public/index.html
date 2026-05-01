@@ -127,7 +127,7 @@
     /* ─── HERO ─── */
     .hero {
       position: relative;
-      background: var(--vi-navy);
+      background: linear-gradient(135deg, var(--vi-navy) 0%, #1a3540 45%, var(--vi-dark-teal) 100%);
       padding: 100px 0 80px;
       overflow: hidden;
     }
@@ -135,8 +135,23 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
-      opacity: 0.12;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(85,194,182,0.35), transparent 45%),
+        radial-gradient(circle at 10% 90%, rgba(239,71,77,0.18), transparent 50%);
+      pointer-events: none;
+    }
+    /* V "Truth Mark" watermark — brand-spec abstract checkmark */
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      bottom: -140px;
+      width: 620px;
+      height: 620px;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M5 8 L48 92 L60 64 L95 8 L72 8 L52 50 L28 8 Z' fill='%2355C2B6'/></svg>") no-repeat center/contain;
+      opacity: 0.08;
+      pointer-events: none;
+      transform: rotate(-8deg);
     }
     .hero-content {
       position: relative;
@@ -145,18 +160,20 @@
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(85,194,182,0.15);
-      border: 1px solid rgba(85,194,182,0.4);
-      color: var(--vi-light-teal);
+      background: var(--vi-light-teal);
+      border: none;
+      color: var(--vi-navy);
       font-family: var(--font-headline);
-      font-weight: 600;
+      font-weight: 700;
       font-size: 13px;
-      padding: 6px 18px;
+      padding: 8px 20px;
       border-radius: 50px;
       margin-bottom: 24px;
       letter-spacing: 0.8px;
       text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(85,194,182,0.35);
     }
+    .hero-badge a { color: var(--vi-navy); text-decoration: underline; }
     .hero h1 {
       font-family: var(--font-headline);
       font-size: clamp(2.2rem, 5.5vw, 4rem);
@@ -193,17 +210,19 @@
     .hero-stat { text-align: center; }
     .hero-stat .num {
       font-family: var(--font-headline);
-      font-size: 36px;
+      font-size: 42px;
       font-weight: 800;
       color: var(--vi-light-teal);
       line-height: 1;
+      text-shadow: 0 2px 16px rgba(85,194,182,0.4);
     }
     .hero-stat .label {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.78);
       font-size: 13px;
-      margin-top: 6px;
+      font-weight: 600;
+      margin-top: 8px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
     }
     .btn-primary {
       display: inline-flex;
@@ -624,13 +643,29 @@
       background: var(--vi-red);
       padding: 70px 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 90% 50%, rgba(255,255,255,0.18), transparent 55%),
+        radial-gradient(circle at 10% 50%, rgba(48,110,115,0.22), transparent 55%);
+      pointer-events: none;
+    }
+    .cta-banner > .container { position: relative; z-index: 2; }
     .cta-banner h2 {
       font-family: var(--font-headline);
       font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 800;
       color: var(--white);
       margin-bottom: 16px;
+    }
+    .cta-banner h2 .accent {
+      color: var(--vi-light-teal);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.18);
     }
     .cta-banner p {
       font-family: var(--font-body);
